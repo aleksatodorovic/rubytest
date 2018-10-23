@@ -3,10 +3,6 @@ ruby '>= 2.3.4', '< 2.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
-# Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
-
-gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
@@ -26,7 +22,7 @@ gem 'jbuilder'
 gem 'sdoc',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -38,4 +34,25 @@ gem 'puma'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+  # Use sqlite3 as the database for Active Record
 
+  gem 'sqlite3'
+
+end
+
+group :development do
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+end
+
+group :production do
+  #heroku doesn't like sqlite3 so use pg instead
+  gem 'pg', '~> 0.18'
+  gem 'rails_12factor'
+end
